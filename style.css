@@ -7,7 +7,7 @@ h2 {
   color: #454545;
 }
 
-h2:after {
+h2::after {
   position: absolute;
   content: '';
   left: -7px;
