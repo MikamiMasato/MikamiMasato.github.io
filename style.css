@@ -1,3 +1,22 @@
+/* 全体のレイアウト設定 */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* 
+  左目次・右本文の2カラムレイアウト
+  Flexboxを使用して横並びに配置
+*/
+.container {
+  display: flex;
+  gap: 30px;              /* 目次と本文の間の余白 */
+  align-items: flex-start; /* 目次の高さを本文に引っ張られず上揃えにする */
+  max-width: 1200px;      /* コンテナの最大幅 */
+  margin: 0 auto;         /* 画面中央に配置 */
+}
+
 .worklist {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -42,6 +61,7 @@ th, td {
 #toc {
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
+  width: 500px;
   padding: 1rem 1.5rem;
   margin-bottom: 2rem;
   border-radius: 4px;
@@ -83,4 +103,29 @@ th, td {
 
 #toc a:hover {
   text-decoration: underline;
+}
+
+/* 
+  本文エリア（右側）の設定 
+*/
+#content {
+  flex-grow: 1; /* 残りの横幅をすべて使う */
+  min-width: 0; /* フレックスアイテムの破綻防止 */
+}
+
+
+/* 
+  【レスポンシブ対応】画面幅が768px未満（スマホ・タブレット等）の時
+  横並びから元の「上が目次・下が本文」の縦並びに切り替える
+*/
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column; /* 縦並びに変更 */
+  }
+
+  #toc {
+    width: 100%;            /* 横幅いっぱいに */
+    position: static;       /* 固定追従を解除 */
+    max-height: none;
+  }
 }
