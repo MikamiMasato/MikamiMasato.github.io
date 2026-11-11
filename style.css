@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
+  counter-reset: sec;
 }
 
 /* 
@@ -29,6 +30,12 @@ h2 {
   border: dashed 2px white;
   padding: 0.2em 0.5em;
   color: #454545;
+  counter-reset: subsec;
+  counter-increment: sec;
+}
+
+h2::before {
+  content: counter(sec) ". "; /* 例: "1. " */
 }
 
 h2::after {
@@ -47,6 +54,11 @@ h3 {
   color: #494949;/*文字色*/
   background: #dfefff;/*背景色*/
   border-left: solid 5px #a8d4ff;/*左線（実線 太さ 色）*/
+  counter-increment: subsec;
+}
+
+h3::before {
+  content: counter(sec) "." counter(subsec) " "; /* 例: "1.1 " */
 }
 
 table {
